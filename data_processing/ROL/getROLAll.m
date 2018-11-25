@@ -1,4 +1,4 @@
-function [ROL] = getROLAll(sbj_name,project_name,block_names,dirs,elecs,datatype,ROLparams,column,conds)
+function [ROL] = getROLAll(sbj_name,project_name,block_names,dirs,elecs,datatype,freq_band,locktype,ROLparams,column,conds)
 
 %% INPUTS
 %       sbj_name: subject name
@@ -21,28 +21,28 @@ function [ROL] = getROLAll(sbj_name,project_name,block_names,dirs,elecs,datatype
 %       ROLparams:    (see genROLParams.m script)
 
 
-if isempty(elecs)
+if isempty(elecs)||isempty(elecs);
     % load globalVar (just to get ref electrode, # electrodes)
-    load([dirs.data_root,'/OriginalData/',sbj_name,'/global_',project_name,'_',sbj_name,'_',block_names{1},'.mat'])
+    load([dirs.data_root,'/originalData/',sbj_name,'/global_',project_name,'_',sbj_name,'_',block_names{1},'.mat'])
     elecs = setdiff(1:globalVar.nchan,globalVar.refChan);
 end
 
-if isempty(datatype)
-    datatype = 'HFB';
+if isempty(freq_band)
+    freq_band = 'HFB';
 end
 
 if isempty(ROLparams)
     ROLparams = genROLParams();
 end
 
-load([dirs.data_root,'/OriginalData/',sbj_name,'/global_',project_name,'_',sbj_name,'_',block_names{1},'.mat'])
+load([dirs.data_root,'/originalData/',sbj_name,'/global_',project_name,'_',sbj_name,'_',block_names{1},'.mat'])
 
-dir_in = [dirs.data_root,'/',datatype,'Data/',sbj_name,'/',block_names{1},'/EpochData/'];
-load(sprintf('%s/%siEEG_stimlock_bl_corr_%s_%.2d.mat',dir_in,datatype,block_names{1},elecs(1)));
+dir_in = [dirs.data_root,'/',datatype,'Data/',freq_band,'/',sbj_name,'/',block_names{1},'/EpochData/'];
+load(sprintf('%s/%siEEG_stimlock_bl_corr_%s_%.2d.mat',dir_in,freq_band,block_names{1},elecs(1)));
 % ntrials = size(data.trialinfo,1);
 nstim = size(data.trialinfo.allonsets,2); % (max) number of stim per trial 
 
-if strcmp(datatype,'Spec') % if spectral data, will average across specified freq. range
+if strcmp(freq_band,'Spec') % if spectral data, will average across specified freq. range
     freq_inds = find(data.freqs > ROLparams.freq_range(1) & data.freqs < ROLparams.freq_range(2));   
 end
 
@@ -89,17 +89,17 @@ end
 disp('Concatenating data across blocks...')
 for ei = 1:length(elecs)
     el = elecs(ei);
-    data_all = concatBlocks(sbj_name,block_names,dirs,el,datatype,concatfield,tag);
+    data_all = concatBlocks(sbj_name,block_names,dirs,el,freq_band,datatype,concatfield,tag);
     if ROLparams.power
         data_all.wave = data_all.wave.^2;
     end
-    if strcmp(datatype,'Spec') 
+    if strcmp(freq_band,'Spec') 
         data_all.wave = squeeze(nanmean(data_all.wave(freq_inds,:,:)));
     end
     if (ROLparams.smooth)
         data_all.wave = convn(data_all.wave,gusWin','same');
     end
-    [grouped_trials,grouped_condnames] = groupConds(conds,data_all.trialinfo,column,noise_method,false);
+    [grouped_trials,grouped_condnames] = groupConds(conds,data_all.trialinfo,column,ROLparams.noise_method,ROLparams.noise_fields_trials,false);
     nconds = length(grouped_trials);
     for ci = 1:nconds
         cond = grouped_condnames{ci};
