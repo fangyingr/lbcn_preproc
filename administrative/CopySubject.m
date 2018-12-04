@@ -4,8 +4,7 @@ function CopySubject(sbj_name, s_psychData, d_psychData, s_neuralData, d_neuralD
 
 %% neuralData_folders
 if strcmp(neuralData_folders, 'all')
-    neuralData_folders = {'originalData', 'CARData', 'CompData', 'FiltData', ...
-        'SpecData', 'HFBData'};
+    neuralData_folders = {'originalData', 'CARData', 'SpecData', 'HFBData'};
 else
 end
 
@@ -23,11 +22,13 @@ for i = 1:length(block_names)
     
     %% Copy neural data
     for ii = 1:length(neuralData_folders)
-        tmp_neural_folder_s = [s_neuralData filesep neuralData_folders{ii} filesep sbj_name filesep bn];
+        %         tmp_neural_folder_s = [s_neuralData filesep neuralData_folders{ii} filesep sbj_name filesep bn];
         if strcmp(neuralData_folders{ii}, 'CARData')
             tmp_neural_folder_d = [d_neuralData filesep neuralData_folders{ii} filesep 'CAR' filesep sbj_name filesep bn];
+            tmp_neural_folder_s = [s_neuralData filesep neuralData_folders{ii} filesep 'CAR' filesep sbj_name filesep bn];
         else
             tmp_neural_folder_d = [d_neuralData filesep neuralData_folders{ii} filesep sbj_name filesep bn];
+            tmp_neural_folder_s = [s_neuralData filesep neuralData_folders{ii} filesep sbj_name filesep bn];
         end
         if ~exist(tmp_neural_folder_d)
             disp(['copying ' neuralData_folders{ii} ' ' sbj_name])
@@ -37,16 +38,15 @@ for i = 1:length(block_names)
         end
     end
     
+    %% Copy globalVar
+    global_var_s_path = sprintf('%s/originalData/%s/global_%s_%s_%s.mat',s_neuralData,sbj_name,project_name,sbj_name,bn);
+    global_var_d_path = sprintf('%s/originalData/%s/global_%s_%s_%s.mat',d_neuralData,sbj_name,project_name,sbj_name,bn);
+    if ~exist(global_var_d_path)
+        copyfile(global_var_s_path, global_var_d_path)
+    else
+    end
+    
 end
-
-%% Copy globalVar
-global_var_s_path = sprintf('%s/originalData/%s/global_%s_%s_%s.mat',s_neuralData,sbj_name,project_name,sbj_name,bn);
-global_var_d_path = sprintf('%s/originalData/%s/global_%s_%s_%s.mat',d_neuralData,sbj_name,project_name,sbj_name,bn);
-if ~exist(global_var_d_path)
-    copyfile(global_var_s_path, global_var_d_path)
-else
-end
-
 end
 
 

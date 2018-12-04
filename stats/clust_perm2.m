@@ -205,7 +205,7 @@ else
     else
         defaultStream=RandStream.getGlobalStream;
     end
-    if (nargin<6) || isempty(seed_state),
+    if (nargin<9) || isempty(seed_state),
         %Store state of random number generator
         seed_state=defaultStream.State;
     else
