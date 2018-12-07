@@ -158,3 +158,13 @@ if plot_params.multielec  % if plotting multiple elecs, create legend based on e
     savePNG(gcf, 300, fn_out)
     close
 end
+%%
+
+% elec_names={'PMC','mPFC'};
+% leg = legend(h,elec_names);
+%     legend boxoff
+%     set(leg,'fontsize',15);
+% title('Memory Responses')
+% set(gca,'linewidth',2)
+% ylim([-5 20])
+% box off

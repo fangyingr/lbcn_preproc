@@ -66,7 +66,7 @@ end
 
 switch task
     case 'MMR'
-        plot_params.xlim = [-0.2 3];
+        plot_params.xlim = [-0.2 2];
         plot_params.blc = true;
         plot_params.bl_win = [-0.2 0];  
     case 'UCLA'

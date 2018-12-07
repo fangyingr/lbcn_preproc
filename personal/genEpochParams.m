@@ -53,7 +53,7 @@ switch project_name
             epoch_params.aft_time = 1;
         end
         epoch_params.blc.run = true; % or false
-        epoch_params.blc.win = [-.5 0];
+        epoch_params.blc.win = [-.2 0];
         
     case 'UCLA'
         if strcmp(locktype, 'stim')
@@ -83,6 +83,6 @@ epoch_params.blc.locktype = 'stim';
 epoch_params.blc.bootstrap = false; 
 epoch_params.blc.fieldtrip = false; 
 epoch_params.noise.method = 'trials';
-epoch_params.noise.noise_fields_trials = {'bad_epochs_HFO','bad_epochs_raw_HFspike'};
-epoch_params.noise.noise_fields_timepts = {'bad_inds_HFO','bad_inds_raw_HFspike'};
+epoch_params.noise.noise_fields_trials = {'bad_epochs_raw_LFspike','bad_epochs_HFO','bad_epochs_raw_HFspike'};
+epoch_params.noise.noise_fields_timepts = {'bad_inds_raw_LFspike','bad_inds_HFO','bad_inds_raw_HFspike'};
 end
