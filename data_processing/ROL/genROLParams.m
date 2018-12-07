@@ -9,7 +9,7 @@ ROLparams.mindur = 0.05;    % signal must exceed threshold for at least this dur
 ROLparams.winlen = 0.05;    % length (s) of smaller windows where linear fit of data is computed
 ROLparams.overlap = 0.04;   % length (s) of window overlap
 ROLparams.pre_event = -0.2; %-0.1;
-ROLparams.dur = 6;%1.5;
+ROLparams.dur = 1.5;%6;
 ROLparams.linfit = true; % whether to perform Brett's/Mo's method ROLparams.trialavgtype = 'bs'; % 'bs' for bootstrap, or 'st' for single trials
 ROLparams.bootstrap = true;
 ROLparams.bs_frac = 0.5;    % fraction of trials to be included in each bootstrap rep
