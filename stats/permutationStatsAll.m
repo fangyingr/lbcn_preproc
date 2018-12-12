@@ -42,7 +42,7 @@ end
 p = nan(1,globalVar.nchan);
 for ei = 1:length(elecs)
     el = elecs(ei);
-    data_all = concatBlocks(sbj_name,block_names,dirs,el,datatype,{'wave'},tag);
+    data_all = concatBlocks(sbj_name,block_names,dirs,el,datatype,'Band',{'wave'},tag);
     p(ei)= permutationStats(data_all,column,conds,stats_params);
     disp(['Performing permutation stats on elec: ',num2str(el)])
 end

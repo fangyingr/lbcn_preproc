@@ -16,8 +16,8 @@ if import_server
     for i = 1:length(all_folders)
         tpm(i) = contains(all_folders(i).name, sbj_name_generic);
     end
-%     sbj_folder_name = all_folders(find(tpm == 1)).name;
-    sbj_folder_name = 'SHICEP_S14_69_RTb'
+   sbj_folder_name = all_folders(find(tpm == 1)).name;
+    %sbj_folder_name = 'SHICEP_S14_69_RTb'
 end
 
 for i = 1:length(folder_sublayers)
