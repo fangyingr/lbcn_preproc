@@ -1,4 +1,4 @@
-function [avgCoords, elecNames, isLeft, avgVids, subVids]=sub2AvgBrainCustom(cfg, dirs, fsDir_local)
+function [avgCoords, elecInfo_table, elecCoord, avgVids, subVids]=sub2AvgBrainCustom(cfg, dirs, sbj_name, fsDir_local)
 %function [avgCoords, elecNames, isLeft, avgVids, subVids]=sub2AvgBrain(subj,cfg)
 %
 % This function maps electrodes from patient space to the FreeSurfer average
@@ -92,6 +92,8 @@ if isempty(elecNames)
     % Import electrode names
     elecFname=fullfile(subDir,'elec_recon',[subj '.electrodeNames']);
     elecInfo=csv2Cell(elecFname,' ',2);
+    elecInfo_table = table(elecInfo(:,1), elecInfo(:,2), elecInfo(:,3));
+    elecInfo_table.Properties.VariableNames = {'Name', 'Depth_Strip_Grid', 'Hem'};
     elecNames=elecInfo(:,1);
     nElec=size(elecInfo,1);
     isLeft=zeros(nElec,1);
@@ -127,7 +129,7 @@ end
 % Take care of electrode coordinates in participant space
 if isempty(elecCoord) % no electrode coordinates have been passed in the function call:
     % Import electrode PIAL coordinates
-    coordFname=fullfile(subDir,'elec_recon',[subj '.PIAL']);
+    coordFname=fullfile(subDir,'elec_recon',[subj '.LEPTO']);
     coordCsv=csv2Cell(coordFname,' ',2);
     elecCoord=zeros(nElec,3);
     for a=1:nElec,
@@ -270,7 +272,9 @@ for hemLoop=1:2,
             end
             rotate3d off;
             set(gcf,'name',subj);
+            savePNG(gcf, 300, [dirs.result_root filesep 'native_MNI' filesep 'native_MNI_lateral_' sbj_name '.png'])
             
+                        
             % MEDIAL VIEW
             hFig=figure;
             set(hFig,'position',[350 315 829 360]);
@@ -320,6 +324,7 @@ for hemLoop=1:2,
             end
             rotate3d off;
             set(gcf,'name',subj);
+            savePNG(gcf, 300, [dirs.result_root filesep 'native_MNI' filesep 'native_MNI_medial_' sbj_name '.png'])
             
             drawnow;
             plotCtOffset=nHemElec+plotCtOffset;
