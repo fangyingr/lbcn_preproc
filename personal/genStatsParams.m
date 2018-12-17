@@ -17,7 +17,7 @@ end
 
 stats_params.nreps= 10000; %%% 2000 for cluster based permutation
 stats_params.freq_range = [70 180];
-stats_params.paired = false;%true;
+stats_params.paired = false;%true;%
 stats_params.noise_method = 'trials';
 stats_params.alpha = 0.05;
 stats_params.blc=1;

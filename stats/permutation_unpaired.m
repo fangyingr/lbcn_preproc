@@ -1,4 +1,4 @@
-function p = permutation_unpaired(adata, bdata, reps)
+function [p, real_meandiff] = permutation_unpaired(adata, bdata, reps)
 % This function takes two datasets (adata, bdata) and computes the p-value 
 % that two datasets come from the same underlying distribution by 
 % permuting labels (reps = # of repetitions)

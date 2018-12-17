@@ -86,7 +86,7 @@ switch task
         plot_params.blc = true;
         plot_params.bl_win = [-0.2 0];         
     case 'Memoria'
-        plot_params.xlim = [-0.2 8];
+        plot_params.xlim = [-0.5 8];
         plot_params.blc = true;
         plot_params.bl_win = [-0.2 0];
     case 'Calculia_China'

@@ -1,4 +1,4 @@
-function p = permutation_paired(adata, bdata, reps)
+function [p, real_meandiff] = permutation_paired(adata, bdata, reps)
 % This function takes two datasets (adata, bdata) that are the same length
 % and are linked (e.g. data from the same row in each dataset comes from 
 % same subject) and computes the p-value that two datasets come from the

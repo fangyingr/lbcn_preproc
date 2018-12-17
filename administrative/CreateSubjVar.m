@@ -15,7 +15,7 @@ subjVar = [];
 cortex = getcort(dirs);
 % native_coord = importCoordsFreesurfer(dirs);
 % fs_chan_names = importElectNames(dirs);
-[MNI_coord, chanInfo, native_coord, avgVids, subVids] = sub2AvgBrainCustom([],dirs, sbj_name, fsDir_local);
+[MNI_coord, chanInfo, native_coord, avgVids, subVids,isleft] = sub2AvgBrainCustom([],dirs, sbj_name, fsDir_local);
 
 %% Get the LEPTO coords
 % FreeSurfer Subject Directory
