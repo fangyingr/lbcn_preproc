@@ -24,7 +24,7 @@ end
 % keep track of bad chans (from any block) for labeling plots
 bad_chans = [];
 for bi = 1:length(block_names)
-    load([dirs.data_root,filesep,'OriginalData',filesep,sbj_name,filesep,'global_',project_name,'_',sbj_name,'_',block_names{bi},'.mat'])
+    load([dirs.data_root,filesep,'originalData',filesep,sbj_name,filesep,'global_',project_name,'_',sbj_name,'_',block_names{bi},'.mat'])
     bad_chans = union(bad_chans,globalVar.badChan);
 end
 

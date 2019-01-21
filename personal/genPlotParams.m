@@ -128,6 +128,7 @@ plot_params.noise_fields_timepts= {'bad_epochs_raw_LFspike','bad_inds_HFO','bad_
 plot_params.lw = 3; % linewidth
 plot_params.label = 'name';
 plot_params.sm = 0.1;
+plot_params.divide = false;
 % plot_params.run_blc = true;
 
 

@@ -7,7 +7,7 @@ if strcmp(center, 'Stanford')
     sbj_ind = sbj_name_split{2};
     num_inds = find(ismember(sbj_ind,'0123456789')); % for cases where sbj number has letter appended (e.g. 69b)
     if length(num_inds)<length(sbj_ind) % if sbj_ind has letters (e.g. A,B)
-        if ismember(sbj_ind,{'69b','89b'})
+        if ismember(sbj_ind,{'69b','89b','81b'})
             fs_iEEG = 1000;
             fs_Pdio = 1000;
             data_format = 'edf';

@@ -64,7 +64,7 @@ if ncategs == 1
     colormap(plot_params.cmap);
     set(gca,'YTick',freq_ticks)
     set(gca,'YTickLabel',freq_labels)
-    plot([0 0],ylim,'k-','LineWidth',3)
+    plot([0 0],ylim,'--','Color',[0 0 0],'LineWidth',2)
     if strcmp(plot_params.noise_method,'trials')
         title([cond_names{1},' (',num2str(length(grouped_trials{1})),' of ',num2str(length(grouped_trials_all{1})), ' trials)']);
     else
@@ -152,13 +152,13 @@ function plotLines(data, y_lim)
 if size(data.trialinfo.allonsets,2) > 1
     time_events = cumsum(nanmean(diff(data.trialinfo.allonsets,1,2)));
     for i = 1:length(time_events)
-        plot([time_events(i) time_events(i)],y_lim,'Color', [0 0 0], 'LineWidth',2)
+        plot([time_events(i) time_events(i)],y_lim,'Color', [0.5 0.5 0.5], 'LineWidth',2)
     end
 else
     
 end
-plot([0 0],y_lim,'Color', [0 0 0], 'LineWidth',2)
-plot(xlim,[0 0],'Color', [0 0 0], 'LineWidth',2)
+plot([0 0],y_lim,'--','Color', [0.5 0.5 0.5], 'LineWidth',2)
+plot(xlim,[0 0],'--','Color', [0 0 0], 'LineWidth',2)
 ylim(y_lim)
 
 end

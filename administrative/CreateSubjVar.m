@@ -3,7 +3,7 @@ function [subjVar, subjVar_created]  = CreateSubjVar(sbj_name, dirs, data_format
 if strcmp(data_format, 'edf')
     % Load a given globalVar
     gv_dir = dir(fullfile([dirs.data_root filesep 'OriginalData/' sbj_name]));
-    gv_inds = arrayfun(@(x) contains(x.name, 'global'), gv_dir);
+    gv_inds = arrayfun(@(x) contains(x.name, 'global') && ~contains(x.name, '._'), gv_dir);
     fn_tmp = gv_dir(gv_inds);
     load([fn_tmp(1).folder filesep fn_tmp(1).name])
 else
@@ -15,7 +15,7 @@ subjVar = [];
 cortex = getcort(dirs);
 % native_coord = importCoordsFreesurfer(dirs);
 % fs_chan_names = importElectNames(dirs);
-[MNI_coord, chanInfo, native_coord, avgVids, subVids,isleft] = sub2AvgBrainCustom([],dirs, sbj_name, fsDir_local);
+[MNI_coord, chanInfo, native_coord, avgVids, subVids] = sub2AvgBrainCustom([],dirs, sbj_name, fsDir_local);
 
 %% Get the LEPTO coords
 % FreeSurfer Subject Directory
@@ -124,8 +124,9 @@ elseif sum(in_chan_cmp) < length(in_chan_cmp) && sum(in_fs) < length(in_fs)
     fs_chan_names(in_chan_cmp == 0)
     warning('this exception is not automatically fixable, please decide:')
 
-    prompt = 'Do you want to remove the FS-only and add the EDF/TDT-only?';
-    ID = input(prompt,'s');
+%     prompt = 'Do you want to remove the FS-only and add the EDF/TDT-only?';
+%     ID = input(prompt,'s');
+       ID = 'y';
     if strcmp(ID, 'y')
         % First remove the FS which are not in EDF/TDT
         fs_chan_names = fs_chan_names(in_chan_cmp);
@@ -206,8 +207,9 @@ if ~exist('mismatch_labels')
     
     %% Save subjVar
     if exist([dirs.original_data filesep sbj_name filesep 'subjVar_' sbj_name '.mat'], 'file')
-        prompt = ['subjVar already exist for ' sbj_name ' . Replace it? (y or n):'] ;
-        ID = input(prompt,'s');
+%         prompt = ['subjVar already exist for ' sbj_name ' . Replace it? (y or n):'] ;
+%         ID = input(prompt,'s');
+        ID = 'y';
         if strcmp(ID, 'y')
             save([dirs.original_data filesep sbj_name filesep 'subjVar_' sbj_name '.mat'], 'subjVar')
             disp(['subjVar saved for ' sbj_name])

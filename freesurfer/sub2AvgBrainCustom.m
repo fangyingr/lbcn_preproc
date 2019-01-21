@@ -1,4 +1,4 @@
-function [avgCoords, elecInfo_table, elecCoord, avgVids, subVids,isLeft]=sub2AvgBrainCustom(cfg, dirs, sbj_name, fsDir_local)
+function [avgCoords, elecInfo_table, elecCoord, avgVids, subVids]=sub2AvgBrainCustom(cfg, dirs, sbj_name, fsDir_local)
 %function [avgCoords, elecNames, isLeft, avgVids, subVids]=sub2AvgBrain(subj,cfg)
 %
 % This function maps electrodes from patient space to the FreeSurfer average
@@ -62,7 +62,7 @@ function [avgCoords, elecInfo_table, elecCoord, avgVids, subVids,isLeft]=sub2Avg
 if  ~isfield(cfg,'plotEm'),         plotEm = 1;     else    plotEm = cfg.plotEm;            end
 if  ~isfield(cfg,'elecCoord'),      elecCoord = []; else    elecCoord = cfg.elecCoord;      end
 if  ~isfield(cfg,'elecNames'),      elecNames = []; else    elecNames = cfg.elecNames;      end
-if  ~isfield(cfg,'isLeft'),         isLeft = [];   else    isLeft = cfg.isLeft;      end
+if  ~isfield(cfg,'isLeft'),        isLeft = [];   else    isLeft = cfg.isLeft;      end
 if  ~isfield(cfg,'isSubdural'),     isSubdural = [];   else    isSubdural = cfg.isSubdural;      end
 if  ~isfield(cfg,'rmDepths'),       rmDepths = 0;   else    rmDepths = cfg.rmDepths;      end
 % checkCfg(cfg,'sub2AvgBrain.m');
