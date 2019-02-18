@@ -46,8 +46,8 @@ switch project_name
         
     case 'MMR'
         if strcmp(locktype, 'stim')
-            epoch_params.bef_time = -0.5;
-            epoch_params.aft_time = 5;
+            epoch_params.bef_time = -0.2;
+            epoch_params.aft_time = 3;
         elseif strcmp(locktype, 'resp')
             epoch_params.bef_time = -3;
             epoch_params.aft_time = 1;

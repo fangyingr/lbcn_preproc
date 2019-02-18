@@ -123,8 +123,8 @@ end
 plot_params.noise_method = 'trials'; %'trials','timepts', or 'none'
 % if eliminating trials or timepts, can select which algorithms are used to
 % determine bad trials or timepts
-plot_params.noise_fields_trials= {'bad_epochs_raw_LFspike','bad_epochs_HFO','bad_epochs_raw_HFspike'}; % can combine any of the bad_epoch fields in data.trialinfo (will take union of selected fields)
-plot_params.noise_fields_timepts= {'bad_epochs_raw_LFspike','bad_inds_HFO','bad_epochs_raw_HFspike'}; % can combine any of the bad_epoch fields in data.trialinfo (will take union of selected fields)
+plot_params.noise_fields_trials= {'bad_epochs_HFO','bad_epochs_raw_HFspike'}; % 'bad_epochs_raw_LFspike'can combine any of the bad_epoch fields in data.trialinfo (will take union of selected fields)
+plot_params.noise_fields_timepts= {'bad_inds_HFO','bad_epochs_raw_HFspike'}; % 'bad_epochs_raw_LFspike',can combine any of the bad_epoch fields in data.trialinfo (will take union of selected fields)
 plot_params.lw = 3; % linewidth
 plot_params.label = 'name';
 plot_params.sm = 0.1;

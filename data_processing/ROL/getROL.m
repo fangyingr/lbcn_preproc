@@ -16,9 +16,9 @@ function [ROL]= getROL(data,params)
 
 %% set default values for params if undefined
 
-if isempty(params)
-    params = genROLparams();
-end
+% if isempty(params)
+%     params = genROLparams(projects);
+% end
 
 thrwin_pt = floor(params.thrwin*data.fsample);
 mindur_pt = floor(params.mindur*data.fsample);
@@ -139,8 +139,3 @@ ROL.traces = data_bc;
 % ROL.trace_bs = data_bs;
 ROL.time = data.time;
 ROL.params = params;
-
-
-
-
-

@@ -60,7 +60,7 @@ end
 %% loop through electrodes
 
 % Load globalVar
-fn = sprintf('%s/originalData/%s/global_%s_%s_%s.mat',dirs.data_root,sbj_name,project_name,sbj_name,bn);
+fn = sprintf('%s/OriginalData/%s/global_%s_%s_%s.mat',dirs.data_root,sbj_name,project_name,sbj_name,bn);
 load(fn,'globalVar');
 
 % dir_CAR = [dirs.data_root,'/originalData/',sbj_name,'/',bn];

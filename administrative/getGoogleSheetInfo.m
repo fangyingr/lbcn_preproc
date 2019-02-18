@@ -82,9 +82,7 @@ switch table
             case 'chan_names_fs_figures'
                 GID = '1158910949';
             case 'chan_names_ppt_log'
-                GID = '0';
-                
-        end
+                GID = '0';                
+        end    
 end
-
 end

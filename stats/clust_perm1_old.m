@@ -162,9 +162,9 @@ elseif (fwer>=1) || (fwer<=0)
 end
 
 if fwer<=.01 && n_perm<5000,
-    warning(sprintf('You are probably using too few permutations for a FWER (i.e., alpha level) of %f. Type ">>help clust_perm1" for more info.',fwer));
+    watchit(sprintf('You are probably using too few permutations for a FWER (i.e., alpha level) of %f. Type ">>help clust_perm1" for more info.',fwer));
 elseif fwer<=.05 && n_perm<1000,
-    warning(sprintf('You are probably using too few permutations for a FWER (i.e., alpha level) of %f. Type ">>help clust_perm1" for more info.',fwer));
+    watchit(sprintf('You are probably using too few permutations for a FWER (i.e., alpha level) of %f. Type ">>help clust_perm1" for more info.',fwer));
 end
 
 if nargin<5,
@@ -185,7 +185,7 @@ end
 
 %Get random # generator state
 if verLessThan('matlab','7.6')
-    warning('Your version of MATLAB is too old to seed random number generator. You will not be able to exactly reproduce test results.');
+    watchit('Your version of MATLAB is too old to seed random number generator. You will not be able to exactly reproduce test results.');
     seed_state=NaN;
 else
     if verLessThan('matlab','8.1')
@@ -216,7 +216,7 @@ end
 
 if n_subs<7,
     n_psbl_prms=2^n_subs;
-    warning(sprintf(['Due to the very limited number of participants,' ...
+    watchit(sprintf(['Due to the very limited number of participants,' ...
         ' the total number of possible permutations is small.\nThus only a limited number of p-values (at most %d) are possible and the test might be overly conservative.'], ...
         n_psbl_prms));
 end

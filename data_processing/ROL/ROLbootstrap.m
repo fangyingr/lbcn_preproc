@@ -129,8 +129,3 @@ ROL.fit = bs_rol_fit;
 ROL.trace_bc = data_bc;
 ROL.trace_bs = data_bs;
 ROL.time = data.time;
-
-
-
-
-
