@@ -128,6 +128,7 @@ pvalsig=[];
 
 
 pvalsig = find(pval<=0.05);
+pvalsig = find(pval<=est_alpha);%0.05
 mask = pval;
 mask (mask>est_alpha)=2;
 mask (mask<=est_alpha)=1; %???use est_alpha or not?
